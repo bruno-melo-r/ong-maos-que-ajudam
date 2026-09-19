@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG Mãos que Ajudam</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <img src="assets/images/logo-ong.png" alt="Logotipo da ONG Mãos que Ajudam" class="logo">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu de navegação">☰</label>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html" class="active">Início</a></li>
+        <li class="has-submenu">
+          <a href="projetos.html">Projetos</a>
+          <ul class="submenu">
+            <li><a href="projetos.html#doacao">Como doar</a></li>
+            <li><a href="projetos.html#voluntariado">Seja voluntário</a></li>
+            <li><a href="projetos.html#campanhas">Campanhas ativas</a></li>
+          </ul>
+        </li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="sobre">
+      <h1>ONG Mãos que Ajudam</h1>
+      <h2>Quem somos</h2>
+      <img src="assets/images/equipe-voluntarios.png" alt="Voluntários da ONG organizando doações de alimentos e roupas em caixas" class="content-image">
+      <p>
+        Somos uma organização sem fins lucrativos dedicada a transformar
+        vidas através de ações sociais, educação e apoio a famílias em
+        situação de vulnerabilidade.
+      </p>
+    </section>
+
+    <section id="contato">
+      <h2>Fale conosco</h2>
+      <p>Telefone: (35) 99999-0000</p>
+      <p>E-mail: contato@maosqueajudam.org.br</p>
+      <p>Endereço: Av. da Moda, 123 — Passos, MG</p>
+    </section>
+
+    <section id="componentes">
+      <h2>Prévia de componentes do Design System</h2>
+      <p>Biblioteca de feedback visual padronizada sobre a mesma paleta, tipografia e espaçamentos do restante da plataforma, pronta para ser conectada a dados reais.</p>
+
+      <div class="components-showcase">
+        <div class="showcase-block">
+          <h3>Badges — categorização semântica</h3>
+          <div class="badge-row">
+            <span class="badge badge-primary">Alimentos</span>
+            <span class="badge badge-secondary">Roupas</span>
+            <span class="badge badge-error">Urgente</span>
+            <span class="badge badge-neutral">Mensal</span>
+          </div>
+        </div>
+
+        <div class="showcase-block">
+          <h3>Alertas</h3>
+          <div class="alert alert-success" role="status">
+            <span class="alert-icon" aria-hidden="true">✓</span>
+            <div><strong>Cadastro recebido!</strong> Entraremos em contato pelo e-mail informado.</div>
+          </div>
+          <div class="alert alert-error" role="alert">
+            <span class="alert-icon" aria-hidden="true">✕</span>
+            <div><strong>Não foi possível enviar.</strong> Verifique os campos destacados no formulário.</div>
+          </div>
+          <div class="alert alert-notice" role="status">
+            <span class="alert-icon" aria-hidden="true">!</span>
+            <div><strong>Campanha quase no limite de vagas.</strong> Inscreva-se o quanto antes.</div>
+          </div>
+        </div>
+
+        <div class="showcase-block">
+          <h3>Toast — notificação não obstrutiva</h3>
+          <div class="toast toast--preview">
+            <span class="toast-icon" aria-hidden="true">✓</span>
+            <span>Voluntário cadastrado com sucesso.</span>
+          </div>
+        </div>
+
+        <div class="showcase-block">
+          <h3>Modal</h3>
+          <input type="checkbox" id="modal-demo-toggle" class="modal-toggle" hidden>
+          <label for="modal-demo-toggle" class="btn btn-primary">Ver exemplo de modal</label>
+          <div class="modal-overlay">
+            <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-demo-title">
+              <div class="modal-header">
+                <h3 id="modal-demo-title">Campanha do Agasalho</h3>
+                <label for="modal-demo-toggle" class="modal-close" aria-label="Fechar modal">✕</label>
+              </div>
+              <div class="modal-body">
+                <p>Arrecadação de roupas de inverno para famílias em situação de vulnerabilidade na região de Passos, MG. Pontos de coleta disponíveis na sede da ONG e em parceiros locais.</p>
+              </div>
+              <div class="modal-footer">
+                <label for="modal-demo-toggle" class="btn btn-secondary">Fechar</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 ONG Mãos que Ajudam. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>

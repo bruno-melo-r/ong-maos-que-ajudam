@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Voluntário - ONG Mãos que Ajudam</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <img src="assets/images/logo-ong.png" alt="Logotipo da ONG Mãos que Ajudam" class="logo">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu de navegação">☰</label>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li class="has-submenu">
+          <a href="projetos.html">Projetos</a>
+          <ul class="submenu">
+            <li><a href="projetos.html#doacao">Como doar</a></li>
+            <li><a href="projetos.html#voluntariado">Seja voluntário</a></li>
+            <li><a href="projetos.html#campanhas">Campanhas ativas</a></li>
+          </ul>
+        </li>
+        <li><a href="cadastro.html" class="active">Cadastro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Cadastro de Voluntário</h1>
+    <form action="/cadastro" method="POST" class="form" novalidate>
+      <fieldset class="fieldset-personal">
+        <legend>Dados pessoais</legend>
+
+        <div class="form-field">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" required>
+        </div>
+
+        <div class="form-field">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-field">
+          <label for="nascimento">Data de nascimento</label>
+          <input type="date" id="nascimento" name="nascimento" required>
+        </div>
+
+        <div class="form-field">
+          <label for="cpf">CPF</label>
+          <input type="text" id="cpf" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" title="Formato esperado: 000.000.000-00" required>
+        </div>
+
+        <div class="form-field">
+          <label for="telefone">Telefone</label>
+          <input type="tel" id="telefone" name="telefone" pattern="\(\d{2}\)\s\d{4,5}-\d{4}" placeholder="(35) 99999-0000" title="Formato esperado: (00) 00000-0000" required>
+        </div>
+      </fieldset>
+
+      <fieldset class="fieldset-address">
+        <legend>Endereço</legend>
+
+        <div class="form-field">
+          <label for="endereco">Endereço</label>
+          <input type="text" id="endereco" name="endereco" required>
+        </div>
+
+        <div class="form-field">
+          <label for="cidade">Cidade</label>
+          <input type="text" id="cidade" name="cidade" required>
+        </div>
+
+        <div class="form-field">
+          <label for="estado">Estado</label>
+          <input type="text" id="estado" name="estado" required>
+        </div>
+
+        <div class="form-field">
+          <label for="cep">CEP</label>
+          <input type="text" id="cep" name="cep" pattern="\d{5}-\d{3}" placeholder="00000-000" title="Formato esperado: 00000-000" required>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="btn btn-primary">Cadastrar</button>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 ONG Mãos que Ajudam. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>

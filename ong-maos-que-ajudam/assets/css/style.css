@@ -1,0 +1,786 @@
+/* ============================================================
+   DESIGN SYSTEM — ONG Mãos que Ajudam
+   Variáveis CSS nativas (custom properties) declaradas em :root.
+   Centralizam cor, tipografia e espaçamento para toda a plataforma
+   (index.html, projetos.html, cadastro.html), garantindo consistência
+   visual e manutenção simplificada.
+   ============================================================ */
+
+:root {
+  /* ---------- CORES PRIMÁRIAS (verde — esperança, natureza, confiança) ---------- */
+  --color-primary: #2E7D32;
+  --color-primary-light: #4CAF50;
+  --color-primary-dark: #1B5E20;
+
+  /* ---------- CORES SECUNDÁRIAS (laranja — contraste e chamadas de ação) ---------- */
+  --color-secondary: #F57C00;
+  --color-secondary-light: #FFB74D;
+
+  /* ---------- CORES NEUTRAS (escala de cinza — texto, fundo, bordas) ---------- */
+  --color-neutral-900: #212121;
+  --color-neutral-500: #757575;
+  --color-neutral-300: #E0E0E0;
+  --color-neutral-100: #F5F5F5;
+  --color-white: #FFFFFF;
+
+  /* ---------- CORES SEMÂNTICAS (estados do formulário) ---------- */
+  --color-success: #2E7D32;
+  --color-error: #C62828;
+
+  /* ---------- TIPOGRAFIA (6 patamares hierárquicos) ---------- */
+  --font-family-base: "Segoe UI", Roboto, Arial, sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-md: 20px;
+  --font-size-lg: 28px;
+  --font-size-xl: 40px;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --line-height-base: 1.5;
+
+  /* ---------- ESPAÇAMENTOS (escala modular estrita) ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+
+  /* ---------- OUTROS TOKENS DE APOIO ---------- */
+  --radius-base: 8px;
+  --focus-ring: 3px solid var(--color-secondary);
+  --shadow-card: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* ============================================================
+   RESET BÁSICO
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-neutral-900);
+  background-color: var(--color-white);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Estado de foco visível para navegação por teclado (WCAG 2.4.7) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   TIPOGRAFIA GERAL (tamanhos-base mobile; ampliados nos breakpoints)
+   ============================================================ */
+h1, h2, h3 {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-dark);
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+h1 { font-size: var(--font-size-lg); margin-bottom: var(--space-3); }
+h2 { font-size: var(--font-size-md); margin-bottom: var(--space-3); }
+h3 { font-size: var(--font-size-base); margin-bottom: var(--space-2); }
+
+p {
+  margin: 0 0 var(--space-3) 0;
+  color: var(--color-neutral-900);
+}
+
+a {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   CABEÇALHO E NAVEGAÇÃO
+   Uso intencional de Flexbox (não Grid): alinhamento unidimensional
+   de uma única linha de itens (logo + nav). O Grid é reservado para
+   as áreas verdadeiramente bidimensionais da página (ver adiante).
+   ============================================================ */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-3);
+  background-color: var(--color-white);
+  border-bottom: var(--space-1) solid var(--color-neutral-300);
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+/* ---------- Botão hambúrguer (visível apenas no mobile) ---------- */
+.nav-toggle-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  font-size: var(--font-size-lg);
+  color: var(--color-primary-dark);
+  cursor: pointer;
+}
+
+/* ---------- Menu principal: fechado por padrão no mobile,
+   com transição suave de altura ao abrir ---------- */
+.main-nav {
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-2) 0;
+}
+
+.main-nav a {
+  display: inline-block;
+  padding: var(--space-2) var(--space-1);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-neutral-900);
+  border-bottom: 3px solid transparent;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+  text-decoration: none;
+}
+
+/* ---------- Submenu (dropdown): empilhado dentro do menu mobile,
+   vira dropdown posicionado a partir do breakpoint de tablet ---------- */
+.has-submenu {
+  position: relative;
+}
+
+.submenu {
+  list-style: none;
+  margin: 0;
+  padding-left: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.submenu a {
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-xs);
+}
+
+/* Menu aberto: checkbox marcado libera a altura do <nav> (mobile) */
+@media (max-width: 767px) {
+  .nav-toggle:checked ~ .main-nav {
+    max-height: 480px;
+  }
+}
+
+/* ============================================================
+   LAYOUT PRINCIPAL
+   ============================================================ */
+main {
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3);
+}
+
+section {
+  margin-bottom: var(--space-6);
+}
+
+.content-image {
+  border-radius: var(--radius-base);
+  margin-bottom: var(--space-3);
+}
+
+.info-list {
+  padding-left: var(--space-5);
+  color: var(--color-neutral-900);
+}
+
+.info-list li {
+  margin-bottom: var(--space-2);
+}
+
+/* ============================================================
+   BOTÕES E LINKS DE AÇÃO
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  border: none;
+  border-radius: var(--radius-base);
+  padding: var(--space-3) var(--space-5);
+  cursor: pointer;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
+}
+
+/* :hover — leva a cor para o tom "dark" da paleta e eleva a sombra */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+
+.btn-secondary:hover {
+  background-color: #e06f00;
+  text-decoration: none;
+}
+
+/* :active — botão "afunda" visualmente ao ser pressionado (feedback tátil) */
+.btn:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+
+/* :focus-visible — reforça o anel de foco do Design System sobre o próprio botão */
+.btn:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* :disabled — remove affordance de clique e sinaliza indisponibilidade */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  background-color: var(--color-neutral-300);
+  color: var(--color-neutral-500);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ============================================================
+   SISTEMA DE GRID — 12 COLUNAS (CSS Grid)
+   Contêineres com display: grid e grid-template-columns:
+   repeat(12, 1fr). Os itens filhos usam grid-column: span N.
+   Abordagem mobile-first: por padrão todo item ocupa span 12
+   (100% da largura); os breakpoints reduzem esse valor para
+   reorganizar o conteúdo em 2 ou 3 colunas conforme o espaço
+   disponível na tela.
+   ============================================================ */
+.cards-grid,
+.fieldset-personal,
+.fieldset-address {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--space-4);
+}
+
+.card {
+  grid-column: span 12;
+}
+
+.fieldset-personal .form-field,
+.fieldset-address .form-field {
+  grid-column: span 12;
+}
+
+/* ============================================================
+   CARTÕES DE CAMPANHA
+   Flexbox alinha o conteúdo interno (eixo vertical único) do cartão,
+   mantendo o espaçamento consistente mesmo quando o texto é mais
+   longo do que o previsto.
+   ============================================================ */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  background-color: var(--color-neutral-100);
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-base);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Cartão sinaliza que é uma área com interatividade (mesmo sem link direto) */
+.card:hover,
+.card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+  border-color: var(--color-primary-light);
+}
+
+.card h3 {
+  color: var(--color-primary-dark);
+  margin-bottom: 0;
+}
+
+/* ============================================================
+   FORMULÁRIO DE CADASTRO
+   ============================================================ */
+.form fieldset {
+  border: 1px solid var(--color-neutral-300);
+  border-radius: var(--radius-base);
+  padding: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.form legend {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-dark);
+  padding: 0 var(--space-2);
+}
+
+.form-field {
+  position: relative;
+}
+
+.form-field label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-1);
+  color: var(--color-neutral-900);
+}
+
+.form-field input {
+  width: 100%;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  padding: var(--space-2) var(--space-6) var(--space-2) var(--space-3);
+  border: 1px solid var(--color-neutral-500);
+  border-radius: var(--radius-base);
+  background-color: var(--color-white);
+  color: var(--color-neutral-900);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* :focus — anel de destaque além do outline de :focus-visible do body */
+.form-field input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+}
+
+/* Indicação de erro por cor E borda (nunca só por cor) */
+.form-field input:invalid:not(:placeholder-shown) {
+  border-color: var(--color-error);
+  border-width: 2px;
+}
+
+.form-field input:invalid:not(:placeholder-shown):focus {
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.15);
+}
+
+.form-field input:valid:not(:placeholder-shown) {
+  border-color: var(--color-success);
+}
+
+/* Ícone de validação (✓/✕) desenhado só em CSS, sem JavaScript,
+   usando :has() para "ler" o estado de validade do input dentro do contêiner */
+.form-field:has(input:valid:not(:placeholder-shown))::after {
+  content: "✓";
+  position: absolute;
+  right: var(--space-3);
+  top: 38px;
+  color: var(--color-success);
+  font-weight: var(--font-weight-bold);
+}
+
+.form-field:has(input:invalid:not(:placeholder-shown))::after {
+  content: "✕";
+  position: absolute;
+  right: var(--space-3);
+  top: 38px;
+  color: var(--color-error);
+  font-weight: var(--font-weight-bold);
+}
+
+/* :disabled — mesmo tratamento visual do botão, aplicado a campos bloqueados */
+.form-field input:disabled {
+  background-color: var(--color-neutral-100);
+  color: var(--color-neutral-500);
+  cursor: not-allowed;
+}
+
+/* ============================================================
+   COMPONENTES DE FEEDBACK — Badges, Alertas, Toast e Modal
+   Grupo de estilos padronizado sobre o mesmo Design System (cores,
+   tipografia e espaçamentos), pronto para ser adotado por quem
+   futuramente ligar esses componentes a dados reais (back-end).
+   ============================================================ */
+
+/* ---------- Badges: categorização semântica em formato de crachá ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: 999px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+}
+
+.badge-primary {
+  background-color: rgba(46, 125, 50, 0.12);
+  color: var(--color-primary-dark);
+}
+
+.badge-secondary {
+  background-color: rgba(245, 124, 0, 0.14);
+  color: #8a4600;
+}
+
+.badge-error {
+  background-color: rgba(198, 40, 40, 0.12);
+  color: var(--color-error);
+}
+
+.badge-neutral {
+  background-color: var(--color-neutral-300);
+  color: var(--color-neutral-900);
+}
+
+/* ---------- Alertas: mensagens de estado inline, sempre cor + ícone ---------- */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-base);
+  border-left: 4px solid;
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-4);
+}
+
+.alert-icon {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-md);
+  line-height: 1;
+}
+
+.alert-success {
+  background-color: #EAF6EB;
+  border-color: var(--color-success);
+  color: #1B5E20;
+}
+
+.alert-error {
+  background-color: #FDECEA;
+  border-color: var(--color-error);
+  color: #7A1F1F;
+}
+
+.alert-notice {
+  background-color: #FFF3E0;
+  border-color: var(--color-secondary);
+  color: #8a4600;
+}
+
+/* ---------- Toast: notificação não obstrutiva ---------- */
+.toast {
+  position: fixed;
+  bottom: var(--space-5);
+  right: var(--space-5);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 320px;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-neutral-900);
+  color: var(--color-white);
+  border-radius: var(--radius-base);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  font-size: var(--font-size-sm);
+  z-index: 200;
+}
+
+.toast-icon {
+  color: var(--color-primary-light);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Modificador usado só na vitrine de componentes: tira o toast do
+   position: fixed para ele aparecer no fluxo normal da seção */
+.toast--preview {
+  position: static;
+  margin: 0 auto;
+}
+
+/* ---------- Modal: aberto/fechado via checkbox hack, sem JavaScript ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  background-color: rgba(33, 33, 33, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 300;
+}
+
+.modal-toggle:checked ~ .modal-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-base);
+  padding: var(--space-5);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
+  transform: translateY(-16px);
+  transition: transform 0.2s ease;
+}
+
+.modal-toggle:checked ~ .modal-overlay .modal {
+  transform: translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-3);
+}
+
+.modal-header h3 {
+  margin-bottom: 0;
+}
+
+.modal-close {
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  color: var(--color-neutral-500);
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--color-error);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+/* ---------- Vitrine de componentes (index.html) ---------- */
+.components-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.showcase-block h3 {
+  margin-bottom: var(--space-3);
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+.site-footer {
+  text-align: center;
+  padding: var(--space-5);
+  margin-top: var(--space-6);
+  font-size: var(--font-size-xs);
+  color: var(--color-neutral-500);
+  background-color: var(--color-neutral-100);
+  border-top: 1px solid var(--color-neutral-300);
+}
+
+/* ============================================================
+   RESPONSIVIDADE — 5 BREAKPOINTS (mobile-first, @media min-width)
+   1) 480px  — celulares maiores
+   2) 768px  — tablets
+   3) 1024px — notebooks / laptops
+   4) 1280px — desktops
+   5) 1440px — desktops panorâmicos
+   ============================================================ */
+
+/* 1) 480px — celulares maiores: respiro extra, grid ainda empilhado */
+@media (min-width: 480px) {
+  main {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .site-header {
+    padding: var(--space-3) var(--space-4);
+  }
+}
+
+/* 2) 768px — tablets: cabeçalho vira linha; cartões em 2 colunas;
+      tipografia atinge o tamanho final; formulário agrupa pares de campos */
+@media (min-width: 768px) {
+  .site-header {
+    flex-wrap: nowrap;
+    padding: var(--space-3) var(--space-5);
+  }
+
+  .logo {
+    height: 48px;
+  }
+
+  /* Menu principal deixa de ser condensado: hambúrguer some,
+     nav vira uma linha horizontal e o dropdown passa a ser posicional */
+  .nav-toggle-label {
+    display: none;
+  }
+
+  .main-nav {
+    width: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .main-nav ul {
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+  }
+
+  .submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    min-width: 200px;
+    padding: var(--space-2) 0;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-neutral-300);
+    border-radius: var(--radius-base);
+    box-shadow: var(--shadow-card);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+    z-index: 10;
+  }
+
+  .submenu a {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    white-space: nowrap;
+  }
+
+  .has-submenu:hover .submenu,
+  .has-submenu:focus-within .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  h1 { font-size: var(--font-size-xl); }
+  h2 { font-size: var(--font-size-lg); }
+  h3 { font-size: var(--font-size-md); }
+
+  .card {
+    grid-column: span 6;
+  }
+
+  .fieldset-personal .form-field:nth-child(2),
+  .fieldset-personal .form-field:nth-child(3),
+  .fieldset-personal .form-field:nth-child(4),
+  .fieldset-personal .form-field:nth-child(5) {
+    grid-column: span 6;
+  }
+}
+
+/* 3) 1024px — notebooks/laptops: container centralizado;
+      endereço passa a 3 colunas */
+@media (min-width: 1024px) {
+  main {
+    max-width: 960px;
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .fieldset-address .form-field:nth-child(2),
+  .fieldset-address .form-field:nth-child(3),
+  .fieldset-address .form-field:nth-child(4) {
+    grid-column: span 4;
+  }
+}
+
+/* 4) 1280px — desktops: container mais largo; grid com gap maior */
+@media (min-width: 1280px) {
+  main {
+    max-width: 1100px;
+  }
+
+  .cards-grid,
+  .fieldset-personal,
+  .fieldset-address {
+    gap: var(--space-5);
+  }
+}
+
+/* 5) 1440px — desktops panorâmicos: largura máxima e respiro lateral
+      maiores, evitando linhas de texto excessivamente longas */
+@media (min-width: 1440px) {
+  main {
+    max-width: 1280px;
+    padding-left: var(--space-7);
+    padding-right: var(--space-7);
+  }
+
+  .cards-grid,
+  .fieldset-personal,
+  .fieldset-address {
+    gap: var(--space-6);
+  }
+}

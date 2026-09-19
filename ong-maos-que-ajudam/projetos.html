@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos - ONG Mãos que Ajudam</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <img src="assets/images/logo-ong.png" alt="Logotipo da ONG Mãos que Ajudam" class="logo">
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" hidden>
+    <label for="nav-toggle" class="nav-toggle-label" aria-label="Abrir menu de navegação">☰</label>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li class="has-submenu">
+          <a href="projetos.html" class="active">Projetos</a>
+          <ul class="submenu">
+            <li><a href="projetos.html#doacao">Como doar</a></li>
+            <li><a href="projetos.html#voluntariado">Seja voluntário</a></li>
+            <li><a href="projetos.html#campanhas">Campanhas ativas</a></li>
+          </ul>
+        </li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="doacao">
+      <h1>Projetos da ONG Mãos que Ajudam</h1>
+      <h2>Como doar</h2>
+      <p>Você pode contribuir através de doações via Pix ou transferência bancária.</p>
+      <ul class="info-list">
+        <li>Pix: contato@maosqueajudam.org.br</li>
+        <li>Transferência: Banco 001, Ag. 1234, CC 56789-0</li>
+      </ul>
+    </section>
+
+    <section id="voluntariado">
+      <h2>Seja voluntário</h2>
+      <p>Participe das nossas ações voluntárias e ajude a transformar vidas na sua comunidade.</p>
+      <a href="cadastro.html" class="btn btn-secondary">Quero ser voluntário</a>
+    </section>
+
+    <section id="campanhas">
+      <h2>Nossas campanhas ativas</h2>
+      <div class="cards-grid">
+        <article class="card">
+          <div class="badge-row">
+            <span class="badge badge-secondary">Roupas</span>
+            <span class="badge badge-error">Urgente</span>
+          </div>
+          <h3>Campanha do Agasalho</h3>
+          <p>Arrecadação de roupas de inverno para famílias carentes.</p>
+        </article>
+        <article class="card">
+          <div class="badge-row">
+            <span class="badge badge-primary">Alimentos</span>
+            <span class="badge badge-neutral">Mensal</span>
+          </div>
+          <h3>Cesta Básica Solidária</h3>
+          <p>Distribuição mensal de alimentos para comunidades vulneráveis.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 ONG Mãos que Ajudam. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>
